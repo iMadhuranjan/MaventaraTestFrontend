@@ -17,8 +17,7 @@ const Dashboard = () => {
   const router = useRouter();
   const { posts, loading } = useSelector((s) => s.posts);
 
-  /* -------------------------------- state -------------------------------- */
-  const [tab, setTab] = useState("list");   // "list" | "create"
+   const [tab, setTab] = useState("list");   
   const [editId, setEditId] = useState(null);
   const [form, setForm] = useState({
     title: "",
@@ -27,13 +26,11 @@ const Dashboard = () => {
     content: "",
   });
 
-  /* --------------------------- fetch on mount --------------------------- */
-  useEffect(() => {
+   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
-  /* ---------------------------- helpers --------------------------------- */
-  const resetForm = () => {
+   const resetForm = () => {
     setForm({ title: "", subTitle: "", tags: "", content: "" });
     setEditId(null);
     setTab("list");
@@ -83,11 +80,9 @@ const Dashboard = () => {
     setTab("create");
   };
 
-  /* ------------------------------ JSX ----------------------------------- */
-  return (
+   return (
     <div className="flex min-h-screen">
-      {/* ---------------- Sidebar ---------------- */}
-      <aside className="w-56 bg-gray-900 text-gray-100">
+       <aside className="w-56 bg-gray-900 text-gray-100">
         <h2 className="border-b border-gray-700 p-4 text-xl font-bold">
           Dashboard
         </h2>
@@ -113,10 +108,8 @@ const Dashboard = () => {
         </nav>
       </aside>
 
-      {/* ---------------- Main ---------------- */}
-      <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
-        {/* ---------- LIST ---------- */}
-        {tab === "list" && (
+       <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
+         {tab === "list" && (
           <>
             <h1 className="mb-4 text-2xl font-semibold">Your Posts</h1>
             {loading ? (
@@ -138,8 +131,7 @@ const Dashboard = () => {
                       </div>
                     </div>
 
-                    {/* --- action buttons --- */}
-                    <div className="space-x-2">
+                     <div className="space-x-2">
                       <Link
                       href={`/posts/${p._id}`}
                       target="_blank"
@@ -168,8 +160,7 @@ const Dashboard = () => {
           </>
         )}
 
-        {/* ---------- CREATE / EDIT ---------- */}
-        {tab === "create" && (
+         {tab === "create" && (
           <div className="max-w-xl">
             <h1 className="mb-4 text-2xl font-semibold">
               {editId ? "Edit Post" : "Create New Post"}
